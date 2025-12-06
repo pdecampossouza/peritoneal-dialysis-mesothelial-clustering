@@ -198,7 +198,7 @@ Email: psouza@novaims.unl.pt
 
 Luísa Alexandra Teixeira Santos  
 NOVA Medical School  
-Email: sofia.pereira@nms.unl.pt
+Email: luisa.santos@nms.unl.pt
 
 Sofia Pereira  
 NOVA Medical School  
