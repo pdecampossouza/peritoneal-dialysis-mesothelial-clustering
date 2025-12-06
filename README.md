@@ -196,15 +196,12 @@ Paulo Vitor de Campos Souza
 NOVA Information Management School (NOVA IMS)  
 Email: psouza@novaims.unl.pt
 
-Paulo Vitor de Campos Souza  
-NOVA Information Management School (NOVA IMS)  
-Email: psouza@novaims.unl.pt
-Luísa Alexandra Teixeira Santos
-NOVA Medical School
-Email: luisa.santos@nms.unl.pt
+Luísa Alexandra Teixeira Santos  
+NOVA Medical School 
+Email: pluisa.santos@nms.unl.pt
 
-Sofia Pereira
-Nova Medical School
+Sofia Pereira  
+NOVA Medical School  
 Email: sofia.pereira@nms.unl.pt
 
 ---
