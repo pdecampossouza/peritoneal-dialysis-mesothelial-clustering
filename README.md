@@ -185,7 +185,6 @@ Only processed features (without identifiable content) should be uploaded.
   author    = {Paulo Vitor de Campos Souza},
   title     = {Peritoneal Dialysis Mesothelial Cell Imaging: Feature Extraction and Unsupervised Patient Clustering},
   year      = {2025},
-  note      = {Repository accompanying the dissertation}
 }
 ```
 
