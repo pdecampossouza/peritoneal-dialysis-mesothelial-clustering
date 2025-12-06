@@ -146,16 +146,6 @@ This guarantees reproducibility and allows your code to:
 
 ---
 
-## 📌 Why This Structure Must Stay Private
-
-The images belong to real patients and contain identifiable biological material.  
-Thus:
-
-- **Raw images cannot be committed to GitHub**  
-- **Repository must be PRIVATE**  
-- Only extracted numerical features are uploaded (safe & anonymised)
----
-
 ## ⚙️ Installation
 
 ```bash
