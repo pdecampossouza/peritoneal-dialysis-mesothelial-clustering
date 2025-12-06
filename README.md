@@ -10,7 +10,7 @@
 
 This repository contains the **full pipeline**, source code, metadata, and documentation used in the analysis of **mesothelial cell images from peritoneal dialysis (PD) patients**.
 
-It supports the complete workflow used in the dissertation, covering:
+It supports the complete workflow used in the experiments, covering:
 
 - dataset structuring  
 - image preprocessing  
@@ -40,7 +40,8 @@ peritoneal-dialysis-mesothelial-clustering/
 │   ├── aggregation/            # Patient-level aggregation scripts
 │   ├── clustering/             # PCA + hierarchical clustering
 │   ├── visualization/          # Representative images, Grad-CAM
-│   └── latex/                  # Export tables & figures for the dissertation
+│   └── latex/                  # Export tables & figures for the text
+│   └── figures/                # Figures generated in the experiments
 │
 ├── README.md
 ├── LICENSE
@@ -91,6 +92,10 @@ python src/clustering/cluster_patients_pca.py
 python src/clustering/cluster_patients_with_morphology.py
 python src/clustering/cluster_patients_deep_features.py
 python src/clustering/cluster_pca_all_features.py
+python src/clustering/analyze_cluster_feature_differences.py
+python src/clustering/cluster_clinical_stats.py
+python src/clustering/summarize_clusters_with_morphology.py
+python src/clustering/summarize_patient_clusters.py
 ```
 
 ### **5. Generate representative panels & Grad-CAM**
@@ -100,6 +105,7 @@ python src/visualization/select_representative_images_by_cluster.py
 python src/visualization/panel_representative_images.py
 python src/visualization/gradcam_representative_images.py
 python src/visualization/panel_gradcam_representative_images.py
+python src/visualization/select_representative_images_deep.py
 ```
 
 ### **6. Export LaTeX tables**
@@ -107,6 +113,7 @@ python src/visualization/panel_gradcam_representative_images.py
 ```bash
 python src/latex/generate_latex_outputs.py
 python src/latex/generate_latex_stats.py
+python src/latex/generate_figures_latex_data.py
 ```
 
 ---
