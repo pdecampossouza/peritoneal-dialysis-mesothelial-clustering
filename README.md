@@ -196,6 +196,14 @@ Paulo Vitor de Campos Souza
 NOVA Information Management School (NOVA IMS)  
 Email: psouza@novaims.unl.pt
 
+Luísa Alexandra Teixeira Santos
+NOVA Medical School
+Email: luisa.santos@nms.unl.pt
+
+Sofia Pereira
+Nova Medical School
+Email: sofia.pereira@nms.unl.pt
+
 ---
 
 *“Understanding cellular morphology to uncover patient-level patterns in peritoneal dialysis.”*
