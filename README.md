@@ -144,6 +144,23 @@ python src/latex/generate_latex_stats.py
 - representative image panels
 - Grad-CAM maps
 - aggregated tables (`.tex`) used in the dissertation
+- 
+## 🧬 PCA Clustering (Image-only features)
+
+<img src="figures/patient_pca_clusters_morphology.png" width="650">
+
+## 🌳 Dendrogram (Ward Linkage)
+
+<img src="figures/patient_dendrogram_morphology.png" width="750">
+
+## 📸 Representative Images
+
+<img src="figures/panel_representative_images.png" width="850">
+
+## 🔥 Grad-CAM Interpretability
+
+<img src="figures/panel_gradcam_representative_images.png" width="850">
+
 
 ---
 
