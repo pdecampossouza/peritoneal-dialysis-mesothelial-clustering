@@ -1,166 +1,178 @@
-# Peritoneal Dialysis Microscopy Pipeline – Project Documentation
+# 🧬 Peritoneal Dialysis – Mesothelial Cell Imaging & Unsupervised Patient Clustering
 
-This repository contains a complete computational pipeline for organizing,
-processing, extracting features, analyzing, and visualizing microscopy images
-of peritoneal dialysis (PD) patient–derived cultured cells.
-
----
-
-## Overview of the Pipeline
-
-The workflow transforms raw microscopy images into interpretable patient-level
-profiles using:
-
-1. Data organization and QC  
-2. Extraction of handcrafted features (intensity, morphology, texture)  
-3. Deep feature extraction with ResNet-50  
-4. Patient-level aggregation  
-5. PCA for dimensionality reduction  
-6. Clustering (handcrafted, multimodal, deep features)  
-7. Visualization + LaTeX figure and table generation  
-8. Cluster-level biological interpretation  
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.10](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Made with ❤️ by NOVA IMS](https://img.shields.io/badge/Made%20with-%F0%9F%92%96%20by%20NOVA%20IMS-orange)](https://novaims.unl.pt)
 
 ---
 
-## Repository Structure
+## 🧭 Overview
 
-The main scripts include:
+This repository contains the **full pipeline**, source code, metadata, and documentation used in the analysis of **mesothelial cell images from peritoneal dialysis (PD) patients**.
 
-- Feature extraction  
-- Aggregation  
-- PCA  
-- Clustering  
-- Grad-CAM  
-- Representative image selection  
-- LaTeX output generation  
+It supports the complete workflow used in the dissertation, covering:
 
----
+- dataset structuring  
+- image preprocessing  
+- morphological, intensity, texture, and deep-feature extraction  
+- patient-level aggregation  
+- PCA & hierarchical clustering  
+- representative image selection  
+- Grad-CAM interpretability  
+- LaTeX-ready tables and figures  
 
-## Data Organization
-
-**prepare_dataset_overview.py**  
-Indexes all images and merges metadata. Performs QC checks to ensure dataset completeness.
+The goal is to ensure **full reproducibility**, transparency, and scientific rigor.
 
 ---
 
-## Handcrafted Feature Extraction
-
-**extract_basic_image_features.py**  
-Computes intensity, contrast, Sobel edges, masking.
-
-**extract_morphology_features.py**  
-Segment cells using Gaussian smoothing, Otsu thresholding, connected components. Extracts area, eccentricity, solidity, aspect ratio, cell count, density.
-
-**extract_deep_image_features.py**  
-Uses ResNet‑50 to extract 2048‑dimensional embeddings and saves them per image.
-
----
-
-## Aggregation
-
-**aggregate_features_by_patient.py**  
-Aggregates intensity and edge features.
-
-**aggregate_morphology_features.py**  
-Aggregates morphological features.
-
-**aggregate_deep_features_by_patient.py**  
-Aggregates deep features (mean and std of all 2048 dimensions).
-
----
-
-## Dimensionality Reduction
-
-**cluster_patients_pca.py**  
-Runs PCA on handcrafted features and produces PC plots.
-
-**cluster_pca_all_features.py**  
-Runs PCA including clinical data.
-
-**cluster_patients_deep_features.py**  
-PCA on deep embeddings.
-
----
-
-## Clustering
-
-**cluster_patients_with_morphology.py**  
-Clusters using handcrafted features.
-
-**cluster_patients_deep_features.py**  
-Clusters using deep features.
-
-**cluster_clinical_stats.py**  
-Computes differences across clusters in clinical variables.
-
-**summarize_patient_clusters.py**  
-Generates human‑readable summaries.
-
----
-
-## Feature Interpretability
-
-**analyze_cluster_feature_differences.py**  
-Computes cluster‑wise vs global feature deviation using z‑effect. Produces tables of top discriminatory features.
-
----
-
-## Visualization
-
-**panel_representative_images.py**  
-Extracts representative raw images per cluster.
-
-**panel_gradcam_representative_images.py**  
-Applies Grad‑CAM overlays for interpretability.
-
----
-
-## LaTeX Output Generation
-
-**generate_figures_latex_data.py**  
-Plots heatmaps, PCA projections, dendrograms.
-
-**generate_latex_stats.py**  
-Formats statistical tables for LaTeX.
-
-**generate_latex_outputs.py**  
-Produces complete figure and table bundles.
-
----
-
-## Pipeline Execution Example
+## 📁 Repository Structure
 
 ```
-python prepare_dataset_overview.py
-python extract_basic_image_features.py
-python extract_morphology_features.py
-python extract_deep_image_features.py
-python aggregate_features_by_patient.py
-python aggregate_morphology_features.py
-python aggregate_deep_features_by_patient.py
-python cluster_patients_pca.py
-python cluster_patients_with_morphology.py
-python cluster_patients_deep_features.py
-python analyze_cluster_feature_differences.py
-python generate_latex_outputs.py
+peritoneal-dialysis-mesothelial-clustering/
+│
+├── data/
+│   ├── raw/                    # Raw microscopy images (NOT uploaded here)
+│   ├── intermediate/           # Extracted features by image/patient
+│   └── results/                # PCA projections, dendrograms, representative panels
+│
+├── src/
+│   ├── preprocessing/          # Preprocessing + feature extraction
+│   ├── aggregation/            # Patient-level aggregation scripts
+│   ├── clustering/             # PCA + hierarchical clustering
+│   ├── visualization/          # Representative images, Grad-CAM
+│   └── latex/                  # Export tables & figures for the dissertation
+│
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
 ---
 
-## Interpretation Notes for Clinicians
+## ⚙️ Installation
 
-- Clusters reflect **consistent morphological phenotypes**, not disease severity.
-- Deep learning identifies **subtle morphological signatures** beyond human visual inspection.
-- Z‑effect values highlight the **features that define each cluster**.
-- Representative images and Grad‑CAM maps offer **visual explanations**.
-
----
-
-## Citation
-
-Please cite:
- 
+```bash
+conda create -n pdmesothelial python=3.10
+conda activate pdmesothelial
+pip install -r requirements.txt
+```
 
 ---
 
-This README was automatically constructed from the full pipeline contents.
+## ▶️ Pipeline Execution
+
+### **1. Build dataset index**
+
+```bash
+python src/preprocessing/build_data_image.py
+python src/preprocessing/prepare_dataset_overview.py
+```
+
+### **2. Extract features**
+
+```bash
+python src/preprocessing/extract_basic_image_features.py
+python src/preprocessing/extract_morphology_features.py
+python src/preprocessing/extract_deep_image_features.py
+```
+
+### **3. Aggregate patient-level descriptors**
+
+```bash
+python src/aggregation/aggregate_features_by_patient.py
+python src/aggregation/aggregate_morphology_features.py
+python src/aggregation/aggregate_deep_features_by_patient.py
+```
+
+### **4. Perform clustering**
+
+```bash
+python src/clustering/cluster_patients_pca.py
+python src/clustering/cluster_patients_with_morphology.py
+python src/clustering/cluster_patients_deep_features.py
+python src/clustering/cluster_pca_all_features.py
+```
+
+### **5. Generate representative panels & Grad-CAM**
+
+```bash
+python src/visualization/select_representative_images_by_cluster.py
+python src/visualization/panel_representative_images.py
+python src/visualization/gradcam_representative_images.py
+python src/visualization/panel_gradcam_representative_images.py
+```
+
+### **6. Export LaTeX tables**
+
+```bash
+python src/latex/generate_latex_outputs.py
+python src/latex/generate_latex_stats.py
+```
+
+---
+
+## 🧠 Features Extracted
+
+### **Basic Image Features (Intensity + Edges)**
+- mean, std, min, max intensity  
+- Sobel edge magnitude  
+
+### **Morphology Features**
+- cell count & density  
+- mean & std of:
+  - area  
+  - eccentricity  
+  - aspect ratio  
+  - solidity  
+
+### **GLCM Texture**
+- contrast  
+- homogeneity  
+- energy  
+- correlation  
+
+### **Deep Learning (CNN / ResNet-50)**
+- 2048-d feature vector per image  
+- 4096D patient vector (mean + std)
+
+---
+
+## 📊 Outputs Included
+
+- PCA plots (all feature sets)
+- clustering dendrograms
+- representative image panels
+- Grad-CAM maps
+- aggregated tables (`.tex`) used in the dissertation
+
+---
+
+## 🔒 Privacy Notice
+
+This repository is intended to be **private**, as raw human cell images cannot be publicly distributed.  
+Only processed features (without identifiable content) should be uploaded.
+
+---
+
+## 📘 Citation
+
+```bibtex
+@misc{souza2025pdmesothelial,
+  author    = {Paulo Vitor de Campos Souza},
+  title     = {Peritoneal Dialysis Mesothelial Cell Imaging: Feature Extraction and Unsupervised Patient Clustering},
+  year      = {2025},
+  note      = {Repository accompanying the dissertation}
+}
+```
+
+---
+
+## 📬 Contact
+
+Paulo Vitor de Campos Souza  
+NOVA Information Management School (NOVA IMS)  
+Email: psouza@novaims.unl.pt
+
+---
+
+*“Understanding cellular morphology to uncover patient-level patterns in peritoneal dialysis.”*
