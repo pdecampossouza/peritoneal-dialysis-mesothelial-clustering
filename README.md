@@ -197,8 +197,8 @@ NOVA Information Management School (NOVA IMS)
 Email: psouza@novaims.unl.pt
 
 Luísa Alexandra Teixeira Santos  
-NOVA Medical School 
-Email: pluisa.santos@nms.unl.pt
+NOVA Medical School  
+Email: sofia.pereira@nms.unl.pt
 
 Sofia Pereira  
 NOVA Medical School  
